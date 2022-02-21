@@ -40,8 +40,22 @@
     </div>
     <script>
         let navigation = document.querySelectorAll('.navigation');
+        let flag = true
 
-        function activeNavigation(){this.classList.toggle('active')}
+        function activeNavigation(){
+            if (flag) {
+                this.classList.toggle('active')
+                flag = false
+            } else {
+                if (this.classList[1] === 'active') {
+                    this.classList.remove('active')
+                    flag = true
+                } else {
+                    navigation.forEach((item) => {item.classList.remove('active')})
+                    this.classList.toggle('active')
+                }
+            }
+        }
         navigation.forEach((item) => item.addEventListener('click', activeNavigation));
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
